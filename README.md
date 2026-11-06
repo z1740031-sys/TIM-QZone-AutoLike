@@ -8,7 +8,7 @@
 
 ---
 
-## ✨ 功能特性
+## 功能特性
 
 | 功能 | 说明 |
 |---|---|
@@ -22,7 +22,7 @@
 
 ---
 
-## 🧩 工作原理（逆向分析结论）
+## 工作原理（逆向分析结论）
 
 ### 1. 定位「刷到说说」的时机
 
@@ -88,7 +88,7 @@ boolean isFriend = mgr.e0(String.valueOf(uin));      // e0(String) = isFriend，
 
 ---
 
-## 📱 兼容性
+## 兼容性
 
 | 项 | 值 |
 |---|---|
@@ -97,13 +97,13 @@ boolean isFriend = mgr.e0(String.valueOf(uin));      // e0(String) = isFriend，
 | 框架 | LSPosed 2.2.1（API 102）+ Zygisk；需 KernelSU / Magisk |
 | ABI | arm64-v8a（其它 ABI 亦可，模块内无 native 代码） |
 
-> ⚠️ 模块依赖 TIM 4.1.0 中**未被混淆**的类名与方法名
+> 模块依赖 TIM 4.1.0 中**未被混淆**的类名与方法名
 > （`O` / `getView` / `u1` / `e0` / `getRuntime`）。
 > TIM 升级大版本后如失效，可按上文「工作原理」重新定位并修改常量。
 
 ---
 
-## 🚀 安装
+## 安装
 
 1. 从 [Releases](../../releases) 下载最新 `*.apk`（或自行构建，见下）。
 2. 安装到设备。
@@ -127,7 +127,7 @@ boolean isFriend = mgr.e0(String.valueOf(uin));      // e0(String) = isFriend，
 
 ---
 
-## 🛠 构建
+## 构建
 
 ### 方式一：GitHub Actions（推荐，无需本地环境）
 
@@ -153,7 +153,7 @@ cd TIM-QZone-AutoLike
 
 ---
 
-## 📂 数据目录
+## 数据目录
 
 模块所有运行数据统一存放在 TIM 的应用私有目录下：
 
@@ -167,7 +167,7 @@ cd TIM-QZone-AutoLike
 
 ---
 
-## ❓ 常见问题
+## 常见问题
 
 **Q：装好后没有反应？**
 A：确认三件事 —— ① 模块已启用；② 作用域勾选了 TIM；③ **重启过 TIM**（作用域变更后必须重启宿主）。
@@ -186,7 +186,7 @@ A：在 LSPosed 中停用模块 → 卸载 App → 删除数据目录 `.../com.t
 
 ---
 
-## ⚠️ 免责声明
+## 免责声明
 
 本项目仅供**学习与研究** Xposed 模块开发、Android 逆向分析技术之用。
 使用者应自行承担因使用本模块产生的一切后果，包括但不限于账号风险。
@@ -194,13 +194,13 @@ A：在 LSPosed 中停用模块 → 卸载 App → 删除数据目录 `.../com.t
 
 ---
 
-## 📄 许可
+## 许可
 
 [GPL-3.0](LICENSE)
 
 ---
 
-## 🙏 致谢
+## 致谢
 
 - [LSPosed](https://github.com/LSPosed/LSPosed) 与 [libxposed API](https://github.com/libxposed/api)
 - [WeKit](https://github.com/ujhhgtg/wekit) —— 本模块的设计思路来源
