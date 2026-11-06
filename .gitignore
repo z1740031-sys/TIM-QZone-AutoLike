@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+app/build/
+out/
+local.properties
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 本地产物
+*.apk
+*.apk.idsig
+*.jks
+*.keystore
+!gradle/wrapper/gradle-wrapper.jar
+
+# 反编译 / 逆向工作目录（不入库）
+/tim/
+tim_tmp.apk
+*.dex
+*.smali

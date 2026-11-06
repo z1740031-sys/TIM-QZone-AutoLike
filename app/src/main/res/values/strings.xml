@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TIM 空间自动点赞</string>
+    <string name="xposed_description">TIM 空间说说：刷到未点赞的说说时自动点赞（仅好友、不重复、跳过广告）</string>
+    <string-array name="xposedscope">
+        <item>com.tencent.tim</item>
+    </string-array>
+</resources>
