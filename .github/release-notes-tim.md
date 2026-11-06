@@ -4,8 +4,8 @@ LSPosed 模块：TIM 空间说说刷到自动点赞。
 
 ### 安装包
 
-- **`TIM_QZone_AutoLike-v1.5.apk`** — arm64-v8a，minSdk 21 / targetSdk 31，versionCode 6
-- SHA-256：`b43bed6bfb236d902f5cab57a01dc073…`（完整值见下方校验说明）
+- **`TIM_QZone_AutoLike-v1.5.apk`** — arm64-v8a，minSdk 21 / targetSdk 31，versionCode 6，大小 25,200 字节
+- SHA-256：`b43bed6bfb236d902f5cab57a01dc073395a936bd243c9eff88bba3dd87135a7`
 
 ### 功能
 
