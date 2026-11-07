@@ -3,6 +3,7 @@ name: Build APK
 on:
   push:
     branches: [ main, master ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
@@ -59,7 +60,13 @@ jobs:
       - name: Collect artifact
         run: |
           mkdir -p out
-          find app/build/outputs/apk -name '*.apk' -exec cp {} out/ \;
+          TAG="${{ github.ref_name }}"
+          if [[ "$TAG" == v* ]]; then
+            # 打 tag 时产出规范文件名，便于发布
+            cp app/build/outputs/apk/release/app-release.apk "out/TIM_QZone_AutoLike-$TAG.apk"
+          else
+            find app/build/outputs/apk -name '*.apk' -exec cp {} out/ \;
+          fi
           ls -la out
 
       - name: Upload APK artifact
@@ -74,4 +81,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: out/*.apk
-          generate_release_notes: true
+          body_path: .github/release-notes-tim.md
+          generate_release_notes: false
