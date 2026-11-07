@@ -10,8 +10,8 @@ android {
         applicationId = "com.tim.qzone.autolike"
         minSdk = 21
         targetSdk = 31
-        versionCode = 9
-        versionName = "1.8"
+        versionCode = 7
+        versionName = "1.6"
     }
 
     buildTypes {
