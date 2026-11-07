@@ -92,14 +92,32 @@ public class SettingsActivity extends Activity {
         root.addView(tip);
 
         TextView dl = new TextView(this);
-        dl.setText("\n自动点赞延迟（毫秒，默认 100）：");
+        dl.setText("\n—— 点赞时机 ——\n\n"
+                + "看到说说（其点赞按钮出现在屏幕上）后，等待设定时间再点赞。\n"
+                + "即使等待期间你已划到更下面的内容，点赞依然会照常发出。\n");
         dl.setTextSize(14f);
         root.addView(dl);
 
+        TextView dl2 = new TextView(this);
+        dl2.setText("\n① 看到后的等待时间（毫秒，默认 250）：");
+        dl2.setTextSize(14f);
+        root.addView(dl2);
+
         final EditText et = new EditText(this);
         et.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et.setText(String.valueOf(prefs.getInt("delay_ms", 100)));
+        et.setText(String.valueOf(prefs.getInt("like_delay_ms", 250)));
         root.addView(et);
+
+        TextView vp = new TextView(this);
+        vp.setText("\n② 说说露出屏幕的高度达到多少百分比才算「看到了」（默认 10）：\n"
+                + "调小 = 露出一点就赞；调大 = 要露出更多才赞。");
+        vp.setTextSize(13f);
+        root.addView(vp);
+
+        final EditText etVisible = new EditText(this);
+        etVisible.setInputType(InputType.TYPE_CLASS_NUMBER);
+        etVisible.setText(String.valueOf(prefs.getInt("visible_percent", 10)));
+        root.addView(etVisible);
 
         final TextView save = new TextView(this);
         save.setText("\n[ 保存 ]");
@@ -108,12 +126,19 @@ public class SettingsActivity extends Activity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int d = 100;
+                int d = 250, vis = 10;
                 try {
                     d = Integer.parseInt(et.getText().toString().trim());
                 } catch (Throwable ignore) {
                 }
-                prefs.edit().putInt("delay_ms", Math.max(0, d)).apply();
+                try {
+                    vis = Integer.parseInt(etVisible.getText().toString().trim());
+                } catch (Throwable ignore) {
+                }
+                prefs.edit()
+                        .putInt("like_delay_ms", Math.max(0, d))
+                        .putInt("visible_percent", Math.max(5, Math.min(100, vis)))
+                        .apply();
                 save.setText("\n[ 已保存（重启 TIM 生效）]");
             }
         });
