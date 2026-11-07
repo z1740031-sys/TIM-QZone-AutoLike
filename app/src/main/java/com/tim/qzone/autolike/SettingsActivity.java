@@ -99,7 +99,7 @@ public class SettingsActivity extends Activity {
         root.addView(dl);
 
         TextView dl2 = new TextView(this);
-        dl2.setText("\n① 看到后的等待时间（毫秒，默认 250）：");
+        dl2.setText("\n① 看到后的等待时间（毫秒，默认 300）：");
         dl2.setTextSize(14f);
         root.addView(dl2);
 
@@ -126,7 +126,7 @@ public class SettingsActivity extends Activity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int d = 250, vis = 10;
+                int d = 300, vis = 10;
                 try {
                     d = Integer.parseInt(et.getText().toString().trim());
                 } catch (Throwable ignore) {

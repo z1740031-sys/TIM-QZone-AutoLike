@@ -480,13 +480,13 @@ public class MainHook extends XposedModule {
     // ------------------------------------------------------------------
     // 自动点赞逻辑（v1.6）
     //
-    // 需求：**看到那条说说的点赞按钮，就等约 250ms 后直接点赞**；
-    //       如果 250ms 还没到就划到更下面的内容了，也依然完成点赞。
+    // 需求：**看到那条说说的点赞按钮，就等约 300ms 后直接点赞**；
+    //       如果 300ms 还没到就划到更下面的内容了，也依然完成点赞。
     //
     // 因此判定时机 = 「这个列表项的点赞按钮出现在屏幕上」，
     // 而不是「列表项被绑定数据」（绑定会预取屏幕外的项，导致提前点赞）。
     //
-    // 触发后即从候选池移除并立即排入 250ms 延时队列，
+    // 触发后即从候选池移除并立即排入 300ms 延时队列，
     // **不再检查它是否还在屏幕上** —— 划走也照发。
     // ------------------------------------------------------------------
 
@@ -550,13 +550,13 @@ public class MainHook extends XposedModule {
         return 0.1f;
     }
 
-    /** 点赞延时（毫秒），默认 250。 */
+    /** 点赞延时（毫秒），默认 300。 */
     static int likeDelayMs() {
         try {
-            if (sPrefs != null) return Math.max(0, sPrefs.getInt("like_delay_ms", 250));
+            if (sPrefs != null) return Math.max(0, sPrefs.getInt("like_delay_ms", 300));
         } catch (Throwable ignore) {
         }
-        return 250;
+        return 300;
     }
 
     // ------------------------------------------------------------------
@@ -804,7 +804,7 @@ public class MainHook extends XposedModule {
         });
     }
 
-    /** 一次轮询：找出已经出现在屏幕上的候选，排入 250ms 延时队列。 */
+    /** 一次轮询：找出已经出现在屏幕上的候选，排入 300ms 延时队列。 */
     static void pollOnce(ClassLoader cl) {
         ArrayList<Candidate> ready = new ArrayList<Candidate>();
         long now = System.currentTimeMillis();
@@ -837,9 +837,9 @@ public class MainHook extends XposedModule {
     }
 
     /**
-     * 排入点赞队列：**延迟 likeDelayMs()（默认 250ms）后发送**。
+     * 排入点赞队列：**延迟 likeDelayMs()（默认 300ms）后发送**。
      *
-     * ⚠️ 排入后不再关心该项是否还在屏幕上 —— 即使这 250ms 内
+     * ⚠️ 排入后不再关心该项是否还在屏幕上 —— 即使这 300ms 内
      * 用户划到了更下面的内容，点赞依然会照常发出。
      */
     static void queueLike(final Candidate c, final ClassLoader cl) {
